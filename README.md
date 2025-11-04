@@ -2,6 +2,8 @@
 
 GUIベースのプロンプト生成アプリケーションです。タグを管理し、重み付きでプロンプトを生成できます。
 
+**Mac用デスクトップアプリケーションとして実行可能です。**
+
 ## 機能
 
 ### 主要機能
@@ -32,25 +34,38 @@ GUIベースのプロンプト生成アプリケーションです。タグを�
 - 重み入力フォーム（0.0〜2.0、小数点第一位）
 - 挿入ボタンとキャンセルボタン
 
+## セットアップ
+
+### 依存関係のインストール
+
+```bash
+npm install
+```
+
 ## 使い方
 
 ### 1. アプリケーションの起動
 
-#### 方法1: 直接HTMLファイルを開く
+#### 推奨: Electronアプリとして起動（Mac/Windows/Linux）
+```bash
+npm start
+```
+
+#### 方法2: ビルド済みアプリケーションを使用（Mac）
+```bash
+# Mac用のアプリケーションをビルド
+npm run build
+
+# ビルドされたアプリは dist/ ディレクトリに生成されます
+# dist/mac/Prompt Generator.app をダブルクリックして起動
+```
+
+#### 方法3: 直接HTMLファイルを開く（開発用）
 ```bash
 # ブラウザでindex.htmlを直接開く
 open index.html  # macOS
 xdg-open index.html  # Linux
 start index.html  # Windows
-```
-
-#### 方法2: ローカルサーバーを起動
-```bash
-# Python 3を使用
-python3 -m http.server 8080
-
-# ブラウザで以下のURLにアクセス
-# http://localhost:8080
 ```
 
 ### 2. タグの登録
@@ -110,12 +125,34 @@ python3 -m http.server 8080
 
 ## 技術スタック
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- LocalStorage API
+- **Electron**: デスクトップアプリケーションフレームワーク
+- **HTML5**: マークアップ
+- **CSS3**: スタイリング
+- **Vanilla JavaScript**: アプリケーションロジック
+- **LocalStorage API**: データ永続化
 
-## ブラウザ互換性
+## ビルドコマンド
+
+```bash
+# Mac用にビルド（DMGとZIPファイル）
+npm run build
+
+# すべてのプラットフォーム用にビルド（Mac/Windows/Linux）
+npm run build:all
+
+# パッケージのみ（インストーラなし）
+npm run pack
+```
+
+ビルド成果物は `dist/` ディレクトリに生成されます。
+
+## プラットフォーム対応
+
+- **macOS**: ✅ (DMG, ZIP)
+- **Windows**: ✅ (electron-builder対応)
+- **Linux**: ✅ (electron-builder対応)
+
+## ブラウザ互換性（直接HTMLファイルを開く場合）
 
 - Chrome/Edge: ✅
 - Firefox: ✅
@@ -124,9 +161,10 @@ python3 -m http.server 8080
 
 ## データの永続化
 
-- タグデータはブラウザのローカルストレージに自動保存されます
-- ブラウザを閉じても、データは保持されます
-- データをクリアする場合は、ブラウザの開発者ツールから LocalStorage を削除してください
+- タグデータはローカルストレージに自動保存されます
+- アプリケーションを閉じても、データは保持されます
+- Electronアプリの場合、データはアプリケーション固有のストレージに保存されます
+- データをクリアする場合は、開発者ツール（メニュー > ヘルプ > 開発者ツール）から LocalStorage を削除してください
 
 ## ライセンス
 

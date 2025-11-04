@@ -2,9 +2,12 @@
   "name": "prompt-with-weight-generator",
   "version": "1.0.0",
   "description": "GUI-based prompt generator with weighted tags",
-  "main": "index.html",
+  "main": "main.js",
   "scripts": {
-    "start": "python3 -m http.server 8080"
+    "start": "electron .",
+    "build": "electron-builder --mac",
+    "build:all": "electron-builder -mwl",
+    "pack": "electron-builder --dir"
   },
   "keywords": [
     "prompt",
@@ -13,5 +16,30 @@
     "weight"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.promptgenerator.app",
+    "productName": "Prompt Generator",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "build/icon.icns"
+    },
+    "files": [
+      "**/*",
+      "!**/*.md",
+      "!.git",
+      "!node_modules"
+    ],
+    "directories": {
+      "output": "dist"
+    }
+  }
 }
