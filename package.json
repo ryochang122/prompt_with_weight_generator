@@ -1,0 +1,17 @@
+{
+  "name": "prompt-with-weight-generator",
+  "version": "1.0.0",
+  "description": "GUI-based prompt generator with weighted tags",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080"
+  },
+  "keywords": [
+    "prompt",
+    "generator",
+    "tags",
+    "weight"
+  ],
+  "author": "",
+  "license": "MIT"
+}

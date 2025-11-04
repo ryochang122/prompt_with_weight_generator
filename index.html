@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt with Weight Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- プロンプトセクション -->
+        <div class="prompt-section">
+            <h2>生成されたプロンプト</h2>
+            <div class="prompt-area-wrapper">
+                <textarea id="promptArea" class="prompt-textarea" placeholder="タグを選択してプロンプトを生成します..." rows="8"></textarea>
+                <button id="copyButton" class="copy-button">📋 コピー</button>
+            </div>
+        </div>
+
+        <!-- タグセクション -->
+        <div class="tags-section">
+            <h2>タグ管理</h2>
+
+            <!-- タグ登録フォーム -->
+            <div class="tag-form">
+                <div class="form-group">
+                    <label for="tagName">タグ名:</label>
+                    <input type="text" id="tagName" placeholder="例: beautiful scenery">
+                </div>
+                <div class="form-group">
+                    <label for="tagCategory">カテゴリ:</label>
+                    <input type="text" id="tagCategory" placeholder="例: subject">
+                </div>
+                <button id="addTagButton" class="add-tag-button">タグを登録</button>
+            </div>
+
+            <!-- タグ一覧 -->
+            <div class="tags-list-wrapper">
+                <h3>登録済みタグ</h3>
+                <div id="tagsList" class="tags-list">
+                    <!-- タグボタンがここに動的に追加されます -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 重み入力フロートウィンドウ（モーダル） -->
+    <div id="weightModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTagName">タグ: </h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <label for="weightInput">重み (0.0 ~ 2.0):</label>
+                <input type="number" id="weightInput" min="0" max="2.0" step="0.1" placeholder="空欄でタグのみ挿入">
+                <p class="weight-hint">※ 重みを指定しない場合はタグのみが挿入されます</p>
+            </div>
+            <div class="modal-footer">
+                <button id="insertButton" class="insert-button">挿入</button>
+                <button id="cancelButton" class="cancel-button">キャンセル</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
