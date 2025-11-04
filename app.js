@@ -185,12 +185,24 @@ class PromptGenerator {
             tagText = this.currentTag.name;
         }
 
-        // プロンプトパーツに追加
-        this.promptParts.push({
-            text: tagText,
-            category: this.currentTag.category,
-            tag: this.currentTag.name
-        });
+        // 既存のタグを探す
+        const existingIndex = this.promptParts.findIndex(part => part.tag === this.currentTag.name);
+
+        if (existingIndex !== -1) {
+            // 既存のタグを置き換える
+            this.promptParts[existingIndex] = {
+                text: tagText,
+                category: this.currentTag.category,
+                tag: this.currentTag.name
+            };
+        } else {
+            // 新規追加
+            this.promptParts.push({
+                text: tagText,
+                category: this.currentTag.category,
+                tag: this.currentTag.name
+            });
+        }
 
         // プロンプトを再生成
         this.generatePrompt();
@@ -215,7 +227,7 @@ class PromptGenerator {
         const sortedCategories = Object.keys(groupedByCategory).sort();
         const promptText = sortedCategories
             .map(category => groupedByCategory[category].join(', '))
-            .join(', ');
+            .join('\n');
 
         this.promptArea.value = promptText;
     }
